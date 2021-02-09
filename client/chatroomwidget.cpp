@@ -648,28 +648,23 @@ QString ChatRoomWidget::sendCommand(const QStringRef& command,
     return tr("Unknown /command. Use // to send this line literally");
 }
 
+    /* 
+    Tarea: imprimir cada caracter y su posición en el string
+    */
+
 void ChatRoomWidget::sendInput()
 {
     
     std::string miTexto= m_chatEdit->toPlainText().toStdString();
     size_t len = miTexto.size();
-/*     char c1 = miTexto [0];
-    char c2= miTexto [1]; */
     int i = len;
-    /* 
-    Tarea: imprimir cada caracter y su posición en el string
-    */
+
 
     while (i >= 1) {
     char c = miTexto [(len-i)];
     std::cout << "Caracter #" << ((len-i)+1) << " : "<< c << "\n";
        i--;
    } 
-
-/* 
-    std::cout << "Caracter 1: " << c1 << "\n";
-    std::cout << "Caracter 2: " << c2 << "\n";
-   std::cout << "Longitud de la palabra: " << i << "\n"; */
 
     if (!attachedFileName.isEmpty())
         sendFile();
