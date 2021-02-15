@@ -649,7 +649,7 @@ QString ChatRoomWidget::sendCommand(const QStringRef& command,
 }
 
     /* 
-    Tarea: imprimir cada caracter y su posición en el string
+    Tarea: imprimir cada caracter al revés y su posición en el string utilizando "for"
     */
 
 void ChatRoomWidget::sendInput()
@@ -657,13 +657,11 @@ void ChatRoomWidget::sendInput()
     
     std::string miTexto= m_chatEdit->toPlainText().toStdString();
     size_t len = miTexto.size();
-    int i = len;
 
 
-    while (i >= 1) {
-    char c = miTexto [(len-i)];
-    std::cout << "Caracter #" << ((len-i)+1) << " : "<< c << "\n";
-       i--;
+    for (int i =0; len > i; i++) {
+    char c = miTexto [(len-i)-1];
+    std::cout << "Caracter #" << ((len-i)) << " : "<< c << "\n";
    } 
 
     if (!attachedFileName.isEmpty())
