@@ -657,16 +657,38 @@ void ChatRoomWidget::sendInput()
     char* copia = new char[qq + 1];
     copia[qq] = '\0';
 
+    int i = 0;
+
     while(qq > 0) {
 
-        int i = qq - 1;
-        qq--;
+        int j;
+
+        if (j % 2 == 0) {
+            j = i;
+        }
+
+         std::cout << "La j es:" << j << "\n";
+
+       
         copia[i] = miTexto[i];
         std::cout << "se esta copiando: " << i << "\n";
+        i++;
     }
 
     std::cout << "El resultado es: " << copia << "\n";
-    delete[] copia;
+    delete[] copia; //Evitar fugas de memoria
+
+    char * copiaFor = new char[qq+1];
+    copiaFor[qq] = "\0";
+
+    for (int i =0; i < qq; i++) {
+    
+    copia[i] = miTexto[i];
+        std::cout << "se esta copiando: " << i << "\n";
+
+    }
+    std::cout << "El resultado es: " << copiaFor << "\n";
+    delete[] copiaFor; //Evitar fugas de memoria
 
     std::string misStrings[12];
     misStrings[0] = "hola hola";
