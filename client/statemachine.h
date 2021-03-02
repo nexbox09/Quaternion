@@ -16,5 +16,6 @@ class StateMachine
 
     private:
     Estado _estado = Nombre;
-
+    void onNombre(std::string mensaje);
+    std::string _nombre;
 };
