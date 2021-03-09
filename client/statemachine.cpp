@@ -15,40 +15,42 @@ void StateMachine::imprimirEstado() {
     }
 }
 
-void StateMachine::oniniciar(std::string mensaje) {
+void StateMachine::onIniciar(std::string mensaje) {
 
     size_t pos = mensaje.find("Emitir pregunta:");
     size_t signo = mensaje.find("?");
     int tamano = (pos - signo);
+    size_t n = mensaje.size();
 
     if(pos == 0) {
+        int interro = 0;
+        for (int i=1;  i<n ; i++) {
+            if (mensaje[i] == '?') {
+            interro++;}    
+            } 
+        if (interro == 1) {
         _estado = Respuesta;
         _iniciar = mensaje.substr(7, tamano);
+        }
     }
 }
 
 void StateMachine::onRespuesta(std::string mensaje) {
 
     size_t pos = mensaje.find("Responder pregunta:");
+    size_t pos2 =mensaje.find("Finalizar");
 
     if(pos == 0) {
         _estado = Respuesta;
         _respuestas.push_back(mensaje.substr(19));
     }
+    else if (pos2 ==0) {
+    _estado = Cierre;
+    }
     else {
-    _estado = Finalizar;
     }
 }
 
- void StateMachine::onFinalizar(std::string mensaje) {
-
-    size_t pos = mensaje.find("Finalizar pregunta");
-
-    if(pos == 0) {
-        _estado = Cierre ;
-    }
-
-} 
 
  void StateMachine::onCierre(std::string mensaje) {
 
@@ -67,13 +69,10 @@ void StateMachine::onRespuesta(std::string mensaje) {
     switch(_estado) {
 
         case Iniciar:
-            oniniciar(mensaje);
+            onIniciar(mensaje);
             break;
         case Respuesta:
             onRespuesta(mensaje);
-            break;
-        case Finalizar:
-            onFinalizar(mensaje);
             break;
         case Cierre:
             onCierre(mensaje);

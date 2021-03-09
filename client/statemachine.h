@@ -6,7 +6,6 @@
 enum Estado {
     Iniciar,
     Respuesta,
-    Finalizar,
     Cierre
 };
 
@@ -22,8 +21,7 @@ class StateMachine
     std::vector<std::string> _respuestas = {};
     int fin = 0;
 
-    void oniniciar(std::string mensaje);
+    void onIniciar(std::string mensaje);
     void onRespuesta(std::string mensaje);
-    void onFinalizar(std::string mensaje);
     void onCierre(std::string mensaje);
 };
