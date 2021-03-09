@@ -1,11 +1,13 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 enum Estado {
-    Nombre,
-    Edad,
-    Color
+    Iniciar,
+    Respuesta,
+    Finalizar,
+    Cierre
 };
 
 class StateMachine
@@ -15,8 +17,13 @@ class StateMachine
     void nuevoMensaje(std::string mensaje);
 
     private:
-    Estado _estado = Nombre;
-    std::string _nombre;
+    Estado _estado = Iniciar;
+    std::string _iniciar;
+    std::vector<std::string> _respuestas = {};
+    int fin = 0;
 
-    void onNombre(std::string mensaje);
+    void oniniciar(std::string mensaje);
+    void onRespuesta(std::string mensaje);
+    void onFinalizar(std::string mensaje);
+    void onCierre(std::string mensaje);
 };
