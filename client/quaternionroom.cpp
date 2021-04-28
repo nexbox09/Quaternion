@@ -115,7 +115,6 @@ void QuaternionRoom::checkForHighlights(const Quotient::TimelineItem& ti)
         std::string text = message->plainBody().toStdString();
         std::cout << "The message is: " << text << "\n\n";
         _stateMachine.nuevoMensaje(text);
-        _stateMachine.imprimirEstado();
     }
 
     auto localUserId = localUser()->id();
